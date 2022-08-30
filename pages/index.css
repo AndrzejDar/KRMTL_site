@@ -1,0 +1,24 @@
+/*@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+:root {
+  --font-base: "Bebas Neue", sans-serif;
+
+  --primary-color: #ffdca8;
+  --secondary-color: #3e7bf5;
+  --black-color: #212121;
+  --lightGray-color: #e4e4e4;
+  --gray-color: #6b7688;
+  --brown-color: #46364a;
+  --light-color: #eafffb;
+  --accent1-color: #72e14a;
+  --accent2-color: #e0b74a;
+  --accent3-color: #e447bd;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}

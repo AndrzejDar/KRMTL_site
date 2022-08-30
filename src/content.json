@@ -1,0 +1,162 @@
+{
+  "header": {
+    "logo": {
+      "text": "Company <span class=\"accent-text\">name</span>",
+      "img": "/img/logo.png"
+    },
+    "nav": {
+      "1": {
+        "text": "HOME",
+        "link": "/"
+      },
+      "2": {
+        "text": "LIBRARY",
+        "link": "/novel"
+      }
+    }
+  },
+
+  "main": {
+    "home": {
+      "hero": {
+        "title": {
+          "type": "h1",
+          "text": {
+            "1": "<span class=\"accent-text\">Company name</span>",
+            "2": "(hero section)"
+          }
+        },
+        "subtitle": {
+          "type": "span",
+          "text": "Our mootto / catch phrase / CTA"
+        },
+        "img": {
+          "alt": "alt text",
+          "src": "/img/logoM.png"
+        }
+      },
+      "sections": {
+        "1": {
+          "type": "text",
+          "title": {
+            "type": "h2",
+            "text": "Section title (type text)"
+          },
+          "subtitle": {
+            "type": "h3",
+            "text": "Section subtitle - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
+          },
+          "content": {
+            "1": {
+              "type": "p",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n \n Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis laboriosam, asperiores ipsum dolorum corporis. In qui sint tenetur quia. Incidunt nulla ad soluta quaerat illum recusandae eius suscipit, vitae quod rem. Quis a ea doloribus! Delectus, enim laborum! Cumque, impedit dolor? Ex unde assumenda voluptas. Earum cum quo repellat? "
+            },
+            "2": {
+              "type": "p",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n \n Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis laboriosam, asperiores ipsum dolorum corporis. In qui sint tenetur quia. Incidunt nulla ad soluta quaerat illum recusandae eius suscipit, vitae quod rem. Quis a ea doloribus! Delectus, enim laborum! Cumque, impedit dolor? Ex unde assumenda voluptas. Earum cum quo repellat? "
+            },
+            "3": {
+              "type": "p",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \n \n Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nobis laboriosam, asperiores ipsum dolorum corporis. In qui sint tenetur quia. Incidunt nulla ad soluta quaerat illum recusandae eius suscipit, vitae quod rem. Quis a ea doloribus! Delectus, enim laborum! Cumque, impedit dolor? Ex unde assumenda voluptas. Earum cum quo repellat? "
+            }
+          }
+        },
+        "2": {
+          "type": "tile",
+          "title": {
+            "type": "",
+            "text": "Section title (type tile)"
+          },
+          "subtitle": {
+            "type": "",
+            "text": "Section subtitle"
+          },
+          "content": {
+            "1": {
+              "title": {
+                "type": "",
+                "text": "Tile title01"
+              },
+              "img": {
+                "alt": "alt text",
+                "src": "img/tile01.jpg"
+              }
+            },
+            "2": {
+              "title": {
+                "type": "",
+                "text": "Tile title02"
+              },
+              "img": {
+                "alt": "alt text",
+                "src": "img/tile02.jpg"
+              }
+            },
+            "3": {
+              "title": {
+                "type": "",
+                "text": "Tile title03"
+              },
+              "img": {
+                "alt": "alt text",
+                "src": "/img/tile03.jpg"
+              }
+            },
+            "4": {
+              "title": {
+                "type": "",
+                "text": "Tile title04"
+              },
+              "img": {
+                "alt": "alt text",
+                "src": "/img/tile04.jpg"
+              }
+            },
+            "5": {
+              "title": {
+                "type": "",
+                "text": "Tile title05"
+              },
+              "img": {
+                "alt": "alt text",
+                "src": "/img/tile05.jpg"
+              }
+            },
+            "6": {
+              "title": {
+                "type": "",
+                "text": "Tile title06"
+              },
+              "img": {
+                "alt": "alt text",
+                "src": "/img/tile06.jpg"
+              }
+            },
+            "7": {
+              "title": {
+                "type": "",
+                "text": "Tile title07"
+              },
+              "img": {
+                "alt": "alt text",
+                "src": "/img/tile07.jpg"
+              }
+            },
+            "8": {
+              "title": {
+                "type": "",
+                "text": "Tile title08"
+              },
+              "img": {
+                "alt": "alt text",
+                "src": "/img/tile08.jpg"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "footer": {}
+}
