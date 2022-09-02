@@ -18,23 +18,21 @@ const Chapter = ({
   novel,
 }) => {
   
-  const [chaptersE, setChaptersE] = useState();
+  const [chaptersE, setChaptersE] = useState([]);
   const router = useRouter();
 
   console.log({novel});
 
   useEffect(() => {
     //redirect if chapter wasn't loaded
-    console.log("init useeffect");
-    console.log(router);
     if (Chapter_Content == "") router.push(`/novel/${novel.attributes.Title_Slug}`);
   }, [router.asPath]);
 
   useEffect(() => {
     setChaptersE([
-      ...novel.attributes.Chapters.data.sort((a, b) => {
-        return a.attributes.Chapter_Number - b.attributes.Chapter_Number;
-      }),
+      ...novel.attributes.Chapters.data.sort((a, b) => 
+         a.attributes.Chapter_Number - b.attributes.Chapter_Number
+      ),
     ]);
   }, []);
 
