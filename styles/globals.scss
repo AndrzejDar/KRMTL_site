@@ -66,11 +66,12 @@
   width: 100%;
   height: auto;
   background-color: var(--gray-color2);
-  padding: 10px;
+
   min-height:calc(100vh - 64px);
 
   .app__content-container {
     width: 1800px;
+    padding: 10px 10px 50px 10px;
 
     display: flex;
     align-items: center;
@@ -93,8 +94,12 @@
 
 
 .app__footer {
+  bottom: 0px;
+  position: absolute;
   background-color: var(--gray-color);
-  height: 100%;
+  height: 40px;
+  width: 100%;
+
 }
 
 .app__whitebg {

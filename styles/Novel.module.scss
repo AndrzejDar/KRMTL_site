@@ -7,21 +7,35 @@
     gap: 5px;
     margin-bottom: 30px;
 
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        align-content: center;
+    }
+    
+
     .left{
-        width: 200px;
+        width: 280px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+        @media screen and (max-width: 768px) {
+            width: 100%;
+                        }
 
         img{
-            width: 150px;
+            width: 260px;
             border-radius: 3px;
+
+            @media screen and (max-width: 768px) {
+width: 100%;
+            }
         }
 
     }
     
     .right{
+        flex-grow: 1;
         // width: 100%;
 
         .header{
@@ -30,8 +44,11 @@
             padding: 10px;
             margin-bottom: 20px;
 
-            p{
+            pre{
                 font-size: small;
+                word-wrap: normal;
+                width: 100%;
+                white-space: pre-wrap;
             }
         }
         
@@ -39,6 +56,30 @@
             background-color: var(--gray-color3);
             border-radius: 4px;
             padding: 10px;
+
+            .chapters_header{
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+                padding: 0 10px;
+                
+                .chapter_sorting{
+                    transition: all 0.2s ease-in-out;
+
+                    svg{
+                        width:10px;
+                        height: 20px;
+                    }
+                    
+
+                    &:hover{
+                        transition: all 0.2s ease-in-out;
+                        color: var(--accent-color);
+                    }
+                }
+            }
 
             .chapter_list{
                 display: flex;
@@ -52,13 +93,18 @@
                     border-radius: 4px;
                     padding: 3px;
                     background-color: var(--gray-color4);
-                    min-width: 300px;
+                    min-width: 260px;
                     display: flex;
                     flex-direction: row;
                     align-items: center;
                     justify-content: flex-start;
                     flex-grow: 1;
                     cursor: pointer;
+
+                    &:hover{
+                        transition: all 0.2s ease-in-out;
+                        color: var(--accent-color);
+                    }
 
                     svg{
                         width: 40px;
@@ -84,6 +130,23 @@
 
                         }
                     }
+                }
+            }
+
+            .loadMore{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.2s ease-in-out;
+
+                svg{
+                    width: 20px;
+                    height: 20px;
+                }
+
+                &:hover{
+                    color: var(--accent-color);
+                    transition: all 0.2s ease-in-out;
                 }
             }
         }

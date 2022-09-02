@@ -1,9 +1,41 @@
 .container{
 
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
-    gap: 5px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1800px;
+    height: 100%;
+    margin: 0 auto;
+
+    color: var(--lightGray-color);
+  
+    @media screen and (max-width: 1800px) {
+      width: 1200px;    
+    }
+    @media screen and (max-width: 1200px) {
+      width: 100%;    
+    }
+    @media screen and (max-width: 992px) {
+      width: 100%;
+      max-width: 992px;    
+    }
+
+    .left{
+        
+    }
+  
+    .right{
+        display: flex;
+        gap: 20px;
+
+        a{
+            text-decoration: none;
+            color: var(--lightGray-color);
+
+            &:hover{
+                color: var(--font-base-color);
+            }
+        }
+    }
 }

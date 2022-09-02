@@ -1,53 +1,57 @@
-import React from 'react'
+import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import {FaBookOpen} from 'react-icons/fa'
 
-const Novel = ({novel: {
-    attributes: { 
-        Chapters, Cover, Description, Title, publishedAt 
-    }, 
-    id},
-    novelStyles,
+import ChaptersList from "./ChaptersList";
+
+const Novel = ({
+  novel: {
+    attributes: {
+      Chapters,
+      Cover,
+      Description,
+      Title,
+      Title_Slug,
+      publishedAt,
+    },
+    id,
+  },
+  novelStyles,
 }) => {
 
-  return (    
+let arry = Chapters.data
+  .sort((a,b)=>a.attributes.Chapter_Number-b.attributes.Chapter_Number)
+  .slice(0,11);
+if(Chapters.data.length>=12)arry=[...arry,Chapters.data[Chapters.data.length-1]]
+
+
+  return (
     <div className={novelStyles.novel} key={id}>
-    <div className={novelStyles.left}>
-      <div className={novelStyles.cover}>
-        <img
-          src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${Cover.data.attributes.formats.medium.url}`}
-        />
-      </div>
-      <div className={novelStyles.stats}></div>
-      <div className={novelStyles.actions}></div>
-    </div>
-
-    <div className={novelStyles.right}>
-      <div className={novelStyles.header}>
-        <h1> {Title}</h1>
-        <p>{Description}</p>
-      </div>
-      <div className={novelStyles.chapters}>
-        <span>Chapters</span>
-        <div className="divider"></div>
-        <div className={novelStyles.chapter_list}>
-          {Chapters.data.map((chapter) => (
-                                <Link href={`/novel/${id}/${chapter.attributes.Chapter_Number}`}>
-            <div className={novelStyles.chapter}>
-              <FaBookOpen />
-              <div className={novelStyles.chapterNumber}>
-                <span>Chapter {chapter.attributes.Chapter_Number}</span>
-                <span>published: {new Date(chapter.attributes.publishedAt).toLocaleDateString()}</span>
-              </div>
-            </div>
-            </Link>
-          ))}
+      <div className={novelStyles.left}>
+        <div className={novelStyles.cover}>
+          <img
+            src={
+              Cover.data
+                ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${Cover.data.attributes.formats.medium.url}`
+                : "/img/missing.png"
+            }
+          />
         </div>
+        <div className={novelStyles.stats}></div>
+        <div className={novelStyles.actions}></div>
+      </div>
+
+      <div className={novelStyles.right}>
+        <div className={novelStyles.header}>
+          <h1> {Title}</h1>
+          <pre>{Description}</pre>
+        </div>
+
+        <ChaptersList novelStyles={novelStyles} content={arry} Title_Slug={Title_Slug} novel_id={id} />
+
       </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default Novel
+export default Novel;

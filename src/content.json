@@ -158,5 +158,26 @@
     }
   },
 
-  "footer": {}
+  "footer": {
+    "links": [
+      {
+        "text": "Terms of service",
+        "link": "/terms",
+        "title": "Terms",
+        "content": "Modify content in /src/content Footer section"
+      },
+      {
+        "text": "Privacy Policy",
+        "link": "/privacy",
+        "title": "Privacy Policy",
+        "content": "Modify content in /src/content Footer section"
+      },
+      {
+        "text": "Cookie Policy",
+        "link": "/cookie",
+        "title": "Cookie Policy",
+        "content": "Modify content in /src/content Footer section"
+      }
+    ]
+  }
 }

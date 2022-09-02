@@ -4,6 +4,7 @@ import { fetcher } from "/lib/api";
 import chapterStyles from "/styles/Chapter.module.scss";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import Footer from "../../../../components/Footer";
 
 const chapter = ({
   chapter: {
@@ -21,20 +22,25 @@ const chapter = ({
   const [chaptersE, setChaptersE] = useState([]);
   const router = useRouter();
 
+
+  console.log({novel});
+
   useEffect(() => {
     //redirect if chapter wasn't loaded
     console.log("init useeffect");
     console.log(router);
-    if (Chapter_Content == "") router.push(`/novel/${novel.data.id}`);
+    if (Chapter_Content == "") router.push(`/novel/${novel.attributes.Title_Slug}`);
   }, [router.asPath]);
 
   useEffect(() => {
     setChaptersE([
-      ...novel.data.attributes.Chapters.data.sort((a, b) => {
+      ...novel.attributes.Chapters.data.sort((a, b) => {
         return a.attributes.Chapter_Number - b.attributes.Chapter_Number;
       }),
     ]);
   }, []);
+
+  console.log(chaptersE);
 
   return (
     <div className="app__content">
@@ -43,11 +49,11 @@ const chapter = ({
           <div className={chapterStyles.header}>
             <div className={chapterStyles.path}>
               <span>
-                <Link href={`/novel/${novel.data.id}`}>
-                  {novel.data.attributes.Title}
+                <Link href={`/novel/${novel.attributes.Title_Slug}`}>
+                  {novel.attributes.Title}
                 </Link>
                 /
-                <Link href={`/novel/${novel.data.id}/${Chapter_Number}`}>
+                <Link href={`/novel/${novel.attributes.Title_Slug}/${Chapter_Number}`}>
                   {`Chapter ${Chapter_Number}`}
                 </Link>
               </span>
@@ -55,7 +61,7 @@ const chapter = ({
             <div className={chapterStyles.navigation}>
               <button
                 onClick={() =>
-                  router.push(`/novel/${novel.data.id}/${Chapter_Number - 1}`)
+                  router.push(`/novel/${novel.attributes.Title_Slug}/${+Chapter_Number - 1}`)
                 }
               >
                 <FaArrowLeft /> PREV
@@ -66,7 +72,7 @@ const chapter = ({
                   name="chapters"
                   value={Chapter_Number}
                   onChange={(e) => {
-                    router.push(`/novel/${novel.data.id}/${e.target.value}`);
+                    router.push(`/novel/${novel.attributes.Title_Slug}/${e.target.value}`);
                   }}
                 >
                   {chaptersE.map((chapter, id) => (
@@ -77,11 +83,7 @@ const chapter = ({
                 </select>
                 <span class={chapterStyles.focus}></span>
               </div>
-              <button
-                onClick={() =>
-                  router.push(`/novel/${novel.data.id}/${Chapter_Number + 1}`)
-                }
-              >
+              <button onClick={() =>{router.push(`/novel/${novel.attributes.Title_Slug}/${+Chapter_Number + 1}`)}}>
                 <FaArrowRight /> NEXT
               </button>
             </div>
@@ -93,7 +95,7 @@ const chapter = ({
           <div className={chapterStyles.navigation}>
               <button
                 onClick={() =>
-                  router.push(`/novel/${novel.data.id}/${Chapter_Number - 1}`)
+                  router.push(`/novel/${novel.attributes.Title_Slug}/${+Chapter_Number - 1}`)
                 }
               >
                 <FaArrowLeft /> PREV
@@ -104,7 +106,7 @@ const chapter = ({
                   name="chapters"
                   value={Chapter_Number}
                   onChange={(e) => {
-                    router.push(`/novel/${novel.data.id}/${e.target.value}`);
+                    router.push(`/novel/${novel.attributes.Title_Slug}/${e.target.value}`);
                   }}
                 >
                   {chaptersE.map((chapter, id) => (
@@ -117,7 +119,7 @@ const chapter = ({
               </div>
               <button
                 onClick={() =>
-                  router.push(`/novel/${novel.data.id}/${Chapter_Number + 1}`)
+                  router.push(`/novel/${novel.attributes.Title_Slug}/${+Chapter_Number + 1}`)
                 }
               >
                 <FaArrowRight /> NEXT
@@ -126,15 +128,18 @@ const chapter = ({
           </div>
         </div>
       </div>
+      <footer className="app__footer">
+          <Footer />
+        </footer>
     </div>
   );
 };
 
 export const getServerSideProps = async (context) => {
-  const novelUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels/${context.params.id}?populate=*`;
+  const novelUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels/?filters[Title_Slug][$eq]=${context.params.Title_Slug}&populate=*`;
   const novelResponse = await fetcher(novelUrl);
 
-  const selectedChapter = novelResponse.data.attributes.Chapters.data.find(
+  const selectedChapter = novelResponse.data[0].attributes.Chapters.data.find(
     (a) => a.attributes.Chapter_Number == context.params.Chapter_Number
   );
 
@@ -152,7 +157,7 @@ export const getServerSideProps = async (context) => {
               Novel: "",
             },
           },
-      novel: novelResponse,
+      novel: novelResponse.data[0],
     },
   };
 };

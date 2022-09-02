@@ -3,10 +3,15 @@ import ReleasesStyles from "../styles/Releases.module.scss";
 import { useRouter } from "next/router";
 
 const Releases = ({ content }) => {
-
+//getting novel in content with full chapters data sorted by last updated novel
   const router = useRouter();
 
-  const chapters = content.data.sort((a,b)=>new Date(b.attributes.publishedAt)-new Date(a.attributes.publishedAt));
+
+  //sorting novels by latest chapter
+  const novels = content;
+  console.log('realsfasdf data');
+  console.log(novels);
+  // const chapters = content.data.sort((a,b)=>new Date(b.attributes.publishedAt)-new Date(a.attributes.publishedAt));
 
   return (
     <div className={ReleasesStyles.container}>
@@ -14,22 +19,34 @@ const Releases = ({ content }) => {
       <div className="divider"></div>
       <div className={ReleasesStyles.filter}></div>
       <div className={ReleasesStyles.grid}>
-        {chapters.map((chapter) => (
-          <div className={ReleasesStyles.card} onClick={()=>{router.push(`/novel/${chapter.attributes.Novel.data.id}/${chapter.attributes.Chapter_Number}`)}}>
-            <div className={ReleasesStyles.card_cover}>
-                <img src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${chapter.attributes.Cover.data.attributes.formats.thumbnail.url}`} />
+        {novels.map((novel) => (
+          <div className={ReleasesStyles.card}>
+            <div className={ReleasesStyles.card_cover}
+            onClick={()=>{router.push(`/novel/${novel.attributes.Title_Slug}`)}}
+            >
+                <img src={novel.attributes.Cover.data?`${process.env.NEXT_PUBLIC_STRAPI_URL}${novel.attributes.Cover.data.attributes.formats.thumbnail.url}`:'/img/missing.png'} />
             </div>
             <div className={ReleasesStyles.card_info}>
-              <div className={ReleasesStyles.card_info_title}>
-                <span>{chapter.attributes.Novel.data.attributes.Title}</span>
+              <div className={ReleasesStyles.card_info_title}
+              onClick={()=>{router.push(`/novel/${novel.attributes.Title_Slug}`)}}
+              >
+                <span>{novel.attributes.Title}</span>
               </div>
-              <div className={ReleasesStyles.card_info_chapter}>
-                <span>Chapter {chapter.attributes.Chapter_Number}</span>
-                <span>{new Date(chapter.attributes.publishedAt).toLocaleDateString()}</span>
+              <div className="divider"></div>
+              <div className={ReleasesStyles.card_info_chapters}>
+                
+                {novel.attributes.Chapters.data.sort((a,b)=>b.attributes.Chapter_Number-a.attributes.Chapter_Number).slice(0,4).map((record, id)=>(
+
+                  <div key={id} className={ReleasesStyles.card_info_chapter}
+                  onClick={()=>{router.push(`/novel/${novel.attributes.Title_Slug}/${record.attributes.Chapter_Number}`)}}
+                  >
+                    <span>Chapter {record.attributes.Chapter_Number}</span>
+                    <span>{new Date(record.attributes.publishedAt).toLocaleDateString()}</span>
+
+                </div>
+                  ))}
               </div>
-              <div className={ReleasesStyles.card_info_description}>
-              <span> Maybe some description / synopsis here? Lorem ipsum dolor sit amet consectetur adipisicing elit. Et excepturi, nam quia ex ut iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores architecto natus sed consectetur incidunt doloribus.</span>
-              </div>
+
             </div>
           </div>
         ))}

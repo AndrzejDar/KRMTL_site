@@ -7,10 +7,9 @@ import Releases from "../components/Releases";
 import { fetcher } from "../lib/api";
 
 import { main } from "../src/content.json";
+import Footer from "../components/Footer";
 
-export default function Home({ novels, chapters }) {
-  const sections = [...Object.values(main.home.sections)];
-
+export default function Home({ novels }) {
   return (
     <>
       <Head>
@@ -23,27 +22,26 @@ export default function Home({ novels, chapters }) {
       </Head>
 
       <main className="app__content">
-      <div className="app__content-container">
-
-        <Carousel content={novels} />
-        <Releases content={chapters} />
-          </div>
+        <div className="app__content-container">
+          {console.log(novels)}
+          <Carousel content={novels.data.slice(0, 5)} />
+          <Releases content={novels.data} />
+        </div>
+        <footer className="app__footer">
+          <Footer />
+        </footer>
       </main>
-      <footer className=""></footer>
     </>
   );
 }
 
 export const getStaticProps = async () => {
-  const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?populate=*`;
-  const chaptersUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/chapters?pagination[page]=0&pagination[PageSize]=12&populate=*`;
+  const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?sort=updatedAt:DESC&pagination[pageSize]=16&populate=*`;
   const novelResponse = await fetcher(novelsUrl);
-  const chapterResponse = await fetcher(chaptersUrl);
 
   return {
     props: {
       novels: novelResponse,
-      chapters: chapterResponse
     },
   };
 };

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import CarouselStyles from "../styles/Carousel.module.scss";
 
 const Carousel = ({ content }) => {
-  const novels = content.data;
+  const novels = content;
   const [position, setPosition] = useState(0);
   const router = useRouter();
 
@@ -22,7 +22,7 @@ const Carousel = ({ content }) => {
     clearTimeout(timeoutID);
     timeoutID = setTimeout(() => {
       setPosition((current) => {
-        return content.data.length - 1 <= current ? 0 : current + 1;
+        return content.length - 1 <= current ? 0 : current + 1;
       });
     }, 3000);
   };
@@ -47,16 +47,16 @@ const Carousel = ({ content }) => {
           }}
         >
           {filledNovels.map((novel, id) => (      
-              <div key={id} className={CarouselStyles.image} onClick={()=>{router.push(`/novel/${novel.id}`)}}>
+              <div key={id} className={CarouselStyles.image} onClick={()=>{router.push(`/novel/${novel.attributes.Title_Slug}`)}}>
                 <img
-                  src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${novel.attributes.Cover.data.attributes.formats.small.url}`}
+                  src={novel.attributes.Cover.data?`${process.env.NEXT_PUBLIC_STRAPI_URL}${novel.attributes.Cover.data.attributes.formats.small.url}`:'/img/missing.png'}
                 />
               </div>            
           ))}
         </div>
       </div>
       <div className={CarouselStyles.navigation}>
-        {content.data.map((novel, id) => (
+        {novels.map((novel, id) => (
           <div
             className={CarouselStyles.dot}
             onClick={() => {
