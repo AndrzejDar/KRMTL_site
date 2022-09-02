@@ -19,8 +19,8 @@ const Releases = ({ content }) => {
       <div className="divider"></div>
       <div className={ReleasesStyles.filter}></div>
       <div className={ReleasesStyles.grid}>
-        {novels.map((novel) => (
-          <div className={ReleasesStyles.card}>
+        {novels.map((novel, id) => (
+          <div className={ReleasesStyles.card} key={id}>
             <div className={ReleasesStyles.card_cover}
             onClick={()=>{router.push(`/novel/${novel.attributes.Title_Slug}`)}}
             >

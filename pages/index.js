@@ -1,12 +1,7 @@
 import Head from "next/head";
-import Link from "next/link";
-import HeroSection from "../components/HeroSection";
-import Section from "../components/Section";
 import Carousel from "../components/Carousel";
 import Releases from "../components/Releases";
 import { fetcher } from "../lib/api";
-
-import { main } from "../src/content.json";
 import Footer from "../components/Footer";
 
 export default function Home({ novels }) {

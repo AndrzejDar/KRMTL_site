@@ -1,7 +1,4 @@
 import React from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
-
 import ChaptersList from "./ChaptersList";
 
 const Novel = ({
@@ -12,7 +9,6 @@ const Novel = ({
       Description,
       Title,
       Title_Slug,
-      publishedAt,
     },
     id,
   },

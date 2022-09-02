@@ -57,7 +57,7 @@ const Carousel = ({ content }) => {
       </div>
       <div className={CarouselStyles.navigation}>
         {novels.map((novel, id) => (
-          <div
+          <div key={id}
             className={CarouselStyles.dot}
             onClick={() => {
               setPosition(id);

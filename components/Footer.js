@@ -1,6 +1,6 @@
 import React from "react";
 import FooterStyles from "../styles/Footer.module.scss";
-import Link from "next/Link";
+import Link from "next/link";
 import { footer } from "../src/content.json";
 
 const Footer = () => {
@@ -11,8 +11,8 @@ const Footer = () => {
           <span>Copyrigth © 2022 </span>
         </div>
         <div className={FooterStyles.right}>
-          {footer.links.map((link)=>(
-        <Link href={link.link} >{link.text}</Link>
+          {footer.links.map((link ,id)=>(
+        <Link key={id} href={link.link} >{link.text}</Link>
           ))}
              
 

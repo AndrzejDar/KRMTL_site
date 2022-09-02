@@ -21,7 +21,7 @@ const novel = ({ novels }) => {
   );
 };
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async () => {
 
   const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?populate=*`;
   const novelsResponse = await fetcher(novelsUrl);

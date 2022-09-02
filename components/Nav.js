@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
+
 import navStyles from "../styles/Nav.module.scss";
 import content from "../src/content.json";
 
 import UserButton from "./UserButton";
 
 import { FaSearch, FaRegBookmark } from "react-icons/fa";
-import { HiMenuAlt4, HiX } from "react-icons/hi";
 import NavMenu from "./NavMenu";
 import { useRouter } from "next/router";
 

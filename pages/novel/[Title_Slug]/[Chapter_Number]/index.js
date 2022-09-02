@@ -1,27 +1,25 @@
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import { fetcher } from "/lib/api";
 import chapterStyles from "/styles/Chapter.module.scss";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../../../../components/Footer";
 
-const chapter = ({
+
+
+const Chapter = ({
   chapter: {
     attributes: {
-      Title,
-      publishedAt,
       Chapter_Number,
       Chapter_Content,
-      Cover,
-      Novel,
     },
   },
   novel,
 }) => {
-  const [chaptersE, setChaptersE] = useState([]);
+  
+  const [chaptersE, setChaptersE] = useState();
   const router = useRouter();
-
 
   console.log({novel});
 
@@ -66,7 +64,7 @@ const chapter = ({
               >
                 <FaArrowLeft /> PREV
               </button>
-              <div class={chapterStyles.custom_select}>
+              <div className={chapterStyles.custom_select}>
                 <select
                   id="chapter"
                   name="chapters"
@@ -81,7 +79,7 @@ const chapter = ({
                     </option>
                   ))}
                 </select>
-                <span class={chapterStyles.focus}></span>
+                <span className={chapterStyles.focus}></span>
               </div>
               <button onClick={() =>{router.push(`/novel/${novel.attributes.Title_Slug}/${+Chapter_Number + 1}`)}}>
                 <FaArrowRight /> NEXT
@@ -100,7 +98,7 @@ const chapter = ({
               >
                 <FaArrowLeft /> PREV
               </button>
-              <div class={chapterStyles.custom_select}>
+              <div className={chapterStyles.custom_select}>
                 <select
                   id="chapter"
                   name="chapters"
@@ -115,7 +113,7 @@ const chapter = ({
                     </option>
                   ))}
                 </select>
-                <span class={chapterStyles.focus}></span>
+                <span className={chapterStyles.focus}></span>
               </div>
               <button
                 onClick={() =>
@@ -162,4 +160,4 @@ export const getServerSideProps = async (context) => {
   };
 };
 
-export default chapter;
+export default Chapter;
