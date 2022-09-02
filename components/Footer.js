@@ -4,6 +4,9 @@ import Link from "next/link";
 import { footer } from "../src/content.json";
 
 const Footer = () => {
+
+const fo = footer;
+
   return (
     <>
       <div className={FooterStyles.container}>
@@ -11,7 +14,7 @@ const Footer = () => {
           <span>Copyrigth © 2022 </span>
         </div>
         <div className={FooterStyles.right}>
-          {footer.links.map((link ,id)=>(
+          {fo.links.map((link ,id)=>(
         <Link key={id} href={link.link} >{link.text}</Link>
           ))}
              
