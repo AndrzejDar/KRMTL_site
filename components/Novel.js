@@ -28,7 +28,7 @@ if(Chapters.data.length>=12)arry=[...arry,Chapters.data[Chapters.data.length-1]]
           <img
             src={
               Cover.data
-                ? (process.env.CLOUDINARY==='TRUE'?(Cover.data.attributes.formats.medium.url):(`${process.env.NEXT_PUBLIC_STRAPI_URL}${Cover.data.attributes.formats.medium.url}`))
+                ? Cover.data.attributes.formats.medium.url
                 : "/img/missing.png"
             }
           />
