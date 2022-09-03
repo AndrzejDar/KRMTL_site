@@ -55,7 +55,7 @@ const ChaptersList = ({ novelStyles, content, Title_Slug, novel_id }) => {
   }, [sort]);
 
   return (
-    <div className={novelStyles.chapters}>
+    <div className={novelStyles.chapters} content="notranslate">
       <div className={novelStyles.chapters_header}>
         <span>Chapters:</span>
         <div

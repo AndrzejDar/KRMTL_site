@@ -24,7 +24,7 @@ const Releases = ({ content }) => {
             <div className={ReleasesStyles.card_cover}
             onClick={()=>{router.push(`/novel/${novel.attributes.Title_Slug}`)}}
             >
-                <img src={novel.attributes.Cover.data?`${process.env.NEXT_PUBLIC_STRAPI_URL}${novel.attributes.Cover.data.attributes.formats.thumbnail.url}`:'/img/missing.png'} />
+                <img src={novel.attributes.Cover.data?(process.env.CLOUDINARY?(novel.attributes.Cover.data.attributes.formats.thumbnail.url):(`${process.env.NEXT_PUBLIC_STRAPI_URL}${novel.attributes.Cover.data.attributes.formats.thumbnail.url}`)):'/img/missing.png'} />
             </div>
             <div className={ReleasesStyles.card_info}>
               <div className={ReleasesStyles.card_info_title}
