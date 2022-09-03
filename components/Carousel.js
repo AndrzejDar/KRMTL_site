@@ -50,7 +50,7 @@ const Carousel = ({ content }) => {
               <div key={id} className={CarouselStyles.image} onClick={()=>{router.push(`/novel/${novel.attributes.Title_Slug}`)}}>
                 <img
                   src={novel.attributes.Cover.data?
-                    (process.env.CLOUDINARY?(novel.attributes.Cover.data.attributes.formats.small.url):(`${process.env.NEXT_PUBLIC_STRAPI_URL}${novel.attributes.Cover.data.attributes.formats.small.url}`)):'/img/missing.png'}
+                    (process.env.CLOUDINARY==='TRUE'?(novel.attributes.Cover.data.attributes.formats.small.url):(`${process.env.NEXT_PUBLIC_STRAPI_URL}${novel.attributes.Cover.data.attributes.formats.small.url}`)):'/img/missing.png'}
                 />
               </div>            
           ))}
