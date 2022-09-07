@@ -47,10 +47,10 @@ const Carousel = ({ content }) => {
           }}
         >
           {filledNovels.map((novel, id) => (      
-              <div key={id} className={CarouselStyles.image} onClick={()=>{router.push(`/novel/${novel.attributes.Title_Slug}`)}}>
+              <div key={id} className={CarouselStyles.image} onClick={()=>{router.push(`/novel/${novel.attributes.slug}`)}}>
                 <img
                   src={novel.attributes.Cover.data?
-                    novel.attributes.Cover.data.attributes.formats.small.url:'/img/missing.png'}
+                    `${process.env.NEXT_PUBLIC_MEDIA_URL}${novel.attributes.Cover.data.attributes.formats.medium.url}`:'/img/missing.png'}
                 />
               </div>            
           ))}

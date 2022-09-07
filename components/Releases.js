@@ -9,8 +9,8 @@ const Releases = ({ content }) => {
 
   //sorting novels by latest chapter
   const novels = content;
-  console.log('realsfasdf data');
-  console.log(novels);
+  // console.log('realsfasdf data');
+  // console.log(novels);
   // const chapters = content.data.sort((a,b)=>new Date(b.attributes.publishedAt)-new Date(a.attributes.publishedAt));
 
   return (
@@ -22,13 +22,13 @@ const Releases = ({ content }) => {
         {novels.map((novel, id) => (
           <div className={ReleasesStyles.card} key={id}>
             <div className={ReleasesStyles.card_cover}
-            onClick={()=>{router.push(`/novel/${novel.attributes.Title_Slug}`)}}
+            onClick={()=>{router.push(`/novel/${novel.attributes.slug}`)}}
             >
-                <img src={novel.attributes.Cover.data?novel.attributes.Cover.data.attributes.formats.thumbnail.url:'/img/missing.png'} />
+                <img src={novel.attributes.Cover.data?`${process.env.NEXT_PUBLIC_MEDIA_URL}${novel.attributes.Cover.data.attributes.formats.thumbnail.url}`:'/img/missing.png'} />
             </div>
             <div className={ReleasesStyles.card_info}>
               <div className={ReleasesStyles.card_info_title}
-              onClick={()=>{router.push(`/novel/${novel.attributes.Title_Slug}`)}}
+              onClick={()=>{router.push(`/novel/${novel.attributes.slug}`)}}
               >
                 <span>{novel.attributes.Title}</span>
               </div>
@@ -38,7 +38,7 @@ const Releases = ({ content }) => {
                 {novel.attributes.Chapters.data.sort((a,b)=>b.attributes.Chapter_Number-a.attributes.Chapter_Number).slice(0,4).map((record, id)=>(
 
                   <div key={id} className={ReleasesStyles.card_info_chapter}
-                  onClick={()=>{router.push(`/novel/${novel.attributes.Title_Slug}/${record.attributes.Chapter_Number}`)}}
+                  onClick={()=>{router.push(`/novel/${novel.attributes.slug}/${record.attributes.Chapter_Number}`)}}
                   >
                     <span>Chapter {record.attributes.Chapter_Number}</span>
                     <span>{new Date(record.attributes.publishedAt).toLocaleDateString()}</span>

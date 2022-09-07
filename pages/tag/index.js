@@ -1,20 +1,17 @@
-import { useState } from "react";
-import { fetcher } from "/lib/api";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { fetcher } from "/lib/api";
 import novelStyles from "/styles/Novel.module.scss";
 import NovelCompact from "/components/NovelCompact";
-import Footer from "../../components/Footer";
+import Footer from "/components/Footer";
 import Link from "next/link";
 import Pagination from "/components/Pagination";
 
-const novel = ({ initNovels, tags, initPage, pageCount }) => {
-  // const router = useRouter();
-
-const [novels,setNovels]=useState(initNovels);
-const [page,setPage]=useState(initPage);
+const tag = ({ tags, initNovels, initPage, pageCount }) => {
+  const [novels,setNovels]=useState(initNovels);
+  const [page,setPage]=useState(initPage);
 
   const paginate = async (page) => {
-    // router.push(`/novel?&pagination[page]=${page}&pagination[pageSize]=12`);
     const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?populate=Cover&sort=updatedAt:DESC&pagination[page]=${page}&pagination[pageSize]=12`;
     const novelsResponse = await fetcher(novelsUrl);
     setNovels(novelsResponse.data);
@@ -25,7 +22,7 @@ const [page,setPage]=useState(initPage);
     <div className="app__content">
       <div className="app__content-container">
         <div className={novelStyles.tagFilter}>
-          <span>Filter:</span>
+          <span>Filter by tag:</span>
           <div className={novelStyles.tagFilterList}>
             <Link href={"/tag"}>
               <div className={`${novelStyles.tagButton} ${novelStyles.active}`}>
@@ -44,16 +41,17 @@ const [page,setPage]=useState(initPage);
         </div>
         {/* <Carousel content={novels.slice(0,5)} /> */}
         <div className="smallGrid">
+          {/* {console.log(tag)} */}
           {novels.map((novel, id) => (
             <NovelCompact key={id} novel={novel} />
-            // <Novel key={id} novel={novel} novelStyles={novelStyles} />
+            // {/* // <Novel key={id} novel={novel} novelStyles={novelStyles} /> */}
           ))}
-          <Pagination
-            current={page}
-            total={pageCount}
-            paginate={paginate}
-          />
         </div>
+        <Pagination
+          current={page}
+          total={pageCount}
+          paginate={paginate}
+        />
       </div>
       <footer className="app__footer">
         <Footer />
@@ -67,7 +65,7 @@ export const getServerSideProps = async ({ query: { page = 1 } }) => {
   const tagsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/tags`;
   const tagsResponse = await fetcher(tagsUrl);
   //get a list of all novels
-  const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?populate=Cover&sort=updatedAt:DESC&pagination[page]=1&pagination[pageSize]=12`;
+  const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?populate=Cover&sort=updatedAt:DESC&pagination[1]&pagination[pageSize]=12`;
   const novelsResponse = await fetcher(novelsUrl);
 
   return {
@@ -80,4 +78,4 @@ export const getServerSideProps = async ({ query: { page = 1 } }) => {
   };
 };
 
-export default novel;
+export default tag;

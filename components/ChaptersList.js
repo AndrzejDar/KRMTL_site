@@ -8,7 +8,7 @@ import {
   FaAngleDoubleDown,
 } from "react-icons/fa";
 
-const ChaptersList = ({ novelStyles, content, Title_Slug, novel_id }) => {
+const ChaptersList = ({ novelStyles, content, slug, novel_id }) => {
   const [sort, setSort] = useState(true);
   const [showing, setShowing] = useState(content.length-1);
 
@@ -19,34 +19,34 @@ const ChaptersList = ({ novelStyles, content, Title_Slug, novel_id }) => {
   //   }, []);
 
   const sortData = (data) => {
-    console.log({sort});
-    console.log({data});
+    // console.log({sort});
+    // console.log({data});
     let sorted = [...data];
     if (sort) {
         sorted = sorted
         .sort((a, b) => a.attributes.Chapter_Number - b.attributes.Chapter_Number);
-        console.log('DESC');
+        // console.log('DESC');
     } else {
         sorted = sorted
         .sort((a, b) => b.attributes.Chapter_Number - a.attributes.Chapter_Number);
-        console.log('ASC')
+        // console.log('ASC')
     }
-    console.log("after sorting");
-    console.log(sorted);
-    console.log({sort});
+    // console.log("after sorting");
+    // console.log(sorted);
+    // console.log({sort});
     return sorted;
   };
 
   const loadMore = async () => {
-    console.log({sort});
+    // console.log({sort});
     const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels/${novel_id}?&populate=*`;
     const novelResponse = await fetcher(novelsUrl);
-    console.log(novelResponse.data.attributes.Chapters.data);
+    // console.log(novelResponse.data.attributes.Chapters.data);
     const sorted = await sortData(novelResponse.data.attributes.Chapters.data);
-    console.log({sorted});
+    // console.log({sorted});
     setChapters(sorted);
-    console.log({chapters});
-    console.log({sort});
+    // console.log({chapters});
+    // console.log({sort});
 
   };
 
@@ -68,10 +68,11 @@ const ChaptersList = ({ novelStyles, content, Title_Slug, novel_id }) => {
       </div>
       <div className="divider"></div>
       <div className={novelStyles.chapter_list}>
-        {chapters.map((chapter, id) => (
+        {
+        chapters.map((chapter, id) => (
             id<=showing?
                 <Link key={id} 
-                href={`/novel/${Title_Slug}/${chapter.attributes.Chapter_Number}`}
+                href={`/novel/${slug}/${chapter.attributes.Chapter_Number}`}
                 >
             <div className={novelStyles.chapter}>
               <FaBookOpen />
@@ -90,7 +91,13 @@ const ChaptersList = ({ novelStyles, content, Title_Slug, novel_id }) => {
         ))}
       </div>
       <div className={novelStyles.loadMore}>
+        {chapters.length>0?(
         <FaAngleDoubleDown onClick={() => {loadMore(); setShowing(showing+12)}} />
+        ):(
+          <span className="italic" style={{'fontSize': 'small'}}>
+            No chapters
+          </span>
+        )}
       </div>
     </div>
   );

@@ -11,7 +11,7 @@
       },
       "2": {
         "text": "LIBRARY",
-        "link": "/novel"
+        "link": "/tag"
       }
     }
   },
@@ -176,7 +176,8 @@
         "text": "Cookie Policy",
         "link": "/cookie",
         "title": "Cookie Policy",
-        "content": "Modify content in /src/content Footer section"
+        "content": "",
+        "last_updt": "May 3, 2022"
       }
     ]
   }

@@ -18,7 +18,7 @@ export default function Home({ novels }) {
 
       <main className="app__content">
         <div className="app__content-container">
-          {console.log(novels)}
+          {/* {console.log(novels)} */}
           <Carousel content={novels.data.slice(0, 5)} />
           <Releases content={novels.data} />
         </div>
@@ -31,7 +31,7 @@ export default function Home({ novels }) {
 }
 
 export const getStaticProps = async () => {
-  const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?sort=updatedAt:DESC&pagination[pageSize]=16&populate=*`;
+  const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?sort=updatedAt:DESC&pagination[pageSize]=12&populate=Cover,Chapters`;
   const novelResponse = await fetcher(novelsUrl);
 
   return {

@@ -5,7 +5,7 @@ import Footer from "../../../components/Footer";
 import Novel from "../../../components/Novel";
 
 const novel = ({ novel }) => {
-  console.log(novel);
+  // console.log(novel);
   return (
     <div className="app__content">
       <div className="app__content-container">
@@ -19,7 +19,7 @@ const novel = ({ novel }) => {
 };
 
 export const getServerSideProps = async (context) => {
-  const novelUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?filters[Title_Slug][$eq]=${context.params.Title_Slug}&populate=*`;
+  const novelUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?filters[slug][$eq]=${context.params.slug}&populate=*`;
   const novelResponse = await fetcher(novelUrl);
   return {
     props: {

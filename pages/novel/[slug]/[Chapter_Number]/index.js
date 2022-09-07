@@ -21,11 +21,11 @@ const Chapter = ({
   const [chaptersE, setChaptersE] = useState([]);
   const router = useRouter();
 
-  console.log({novel});
+  // console.log({novel});
 
   useEffect(() => {
     //redirect if chapter wasn't loaded
-    if (Chapter_Content == "") router.push(`/novel/${novel.attributes.Title_Slug}`);
+    if (Chapter_Content == "") router.push(`/novel/${novel.attributes.slug}`);
   }, [router.asPath]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const Chapter = ({
     ]);
   }, []);
 
-  console.log(chaptersE);
+  // console.log(chaptersE);
 
   return (
     <div className="app__content">
@@ -45,11 +45,11 @@ const Chapter = ({
           <div className={chapterStyles.header}>
             <div className={chapterStyles.path}>
               <span>
-                <Link href={`/novel/${novel.attributes.Title_Slug}`}>
+                <Link href={`/novel/${novel.attributes.slug}`}>
                   {novel.attributes.Title}
                 </Link>
                 /
-                <Link href={`/novel/${novel.attributes.Title_Slug}/${Chapter_Number}`}>
+                <Link href={`/novel/${novel.attributes.slug}/${Chapter_Number}`}>
                   {`Chapter ${Chapter_Number}`}
                 </Link>
               </span>
@@ -57,7 +57,7 @@ const Chapter = ({
             <div className={chapterStyles.navigation}>
               <button
                 onClick={() =>
-                  router.push(`/novel/${novel.attributes.Title_Slug}/${+Chapter_Number - 1}`)
+                  router.push(`/novel/${novel.attributes.slug}/${+Chapter_Number - 1}`)
                 }
               >
                 <FaArrowLeft /> PREV
@@ -68,7 +68,7 @@ const Chapter = ({
                   name="chapters"
                   value={Chapter_Number}
                   onChange={(e) => {
-                    router.push(`/novel/${novel.attributes.Title_Slug}/${e.target.value}`);
+                    router.push(`/novel/${novel.attributes.slug}/${e.target.value}`);
                   }}
                 >
                   {chaptersE.map((chapter, id) => (
@@ -79,7 +79,7 @@ const Chapter = ({
                 </select>
                 <span className={chapterStyles.focus}></span>
               </div>
-              <button onClick={() =>{router.push(`/novel/${novel.attributes.Title_Slug}/${+Chapter_Number + 1}`)}}>
+              <button onClick={() =>{router.push(`/novel/${novel.attributes.slug}/${+Chapter_Number + 1}`)}}>
                 <FaArrowRight /> NEXT
               </button>
             </div>
@@ -91,7 +91,7 @@ const Chapter = ({
           <div className={chapterStyles.navigation}>
               <button
                 onClick={() =>
-                  router.push(`/novel/${novel.attributes.Title_Slug}/${+Chapter_Number - 1}`)
+                  router.push(`/novel/${novel.attributes.slug}/${+Chapter_Number - 1}`)
                 }
               >
                 <FaArrowLeft /> PREV
@@ -102,7 +102,7 @@ const Chapter = ({
                   name="chapters"
                   value={Chapter_Number}
                   onChange={(e) => {
-                    router.push(`/novel/${novel.attributes.Title_Slug}/${e.target.value}`);
+                    router.push(`/novel/${novel.attributes.slug}/${e.target.value}`);
                   }}
                 >
                   {chaptersE.map((chapter, id) => (
@@ -115,7 +115,7 @@ const Chapter = ({
               </div>
               <button
                 onClick={() =>
-                  router.push(`/novel/${novel.attributes.Title_Slug}/${+Chapter_Number + 1}`)
+                  router.push(`/novel/${novel.attributes.slug}/${+Chapter_Number + 1}`)
                 }
               >
                 <FaArrowRight /> NEXT
@@ -132,7 +132,7 @@ const Chapter = ({
 };
 
 export const getServerSideProps = async (context) => {
-  const novelUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels/?filters[Title_Slug][$eq]=${context.params.Title_Slug}&populate=*`;
+  const novelUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels/?filters[slug][$eq]=${context.params.slug}&populate=*`;
   const novelResponse = await fetcher(novelUrl);
 
   const selectedChapter = novelResponse.data[0].attributes.Chapters.data.find(
