@@ -18,7 +18,17 @@ const novel = ({ novel }) => {
   );
 };
 
-export const getServerSideProps = async (context) => {
+
+
+export const getStaticPaths = async () => {
+
+  return {
+      paths: [], //indicates that no page needs be created at build time
+      fallback: 'blocking' //indicates the type of fallback
+  }
+}
+
+export const getStaticProps = async (context) => {
   const novelUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?filters[slug][$eq]=${context.params.slug}&populate=*`;
   const novelResponse = await fetcher(novelUrl);
   return {

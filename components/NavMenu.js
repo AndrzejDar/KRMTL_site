@@ -15,7 +15,8 @@ const NavMenu = ({ onClick, onBlur, user, open, links }) => {
       >
         {open && (
           <>
-            <div className={NavMenuStyles.userData}>
+          {/* user info for further development */}
+            {/* <div className={NavMenuStyles.userData}>
               <div className={NavMenuStyles.userInfo}>
                 <div className={NavMenuStyles.userIcon}>{user.name[0]}</div>
                 <div className={NavMenuStyles.userName}>
@@ -25,7 +26,7 @@ const NavMenu = ({ onClick, onBlur, user, open, links }) => {
               </div>
 
               <FaDoorOpen />
-            </div>
+            </div> */}
             <div className={NavMenuStyles.divider}></div>
             <ul>
               {links.map((item, id) => (

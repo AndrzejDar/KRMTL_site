@@ -47,7 +47,17 @@ const tag = ({ initNovels, initPage, pageCount }) => {
   );
 };
 
-export const getServerSideProps = async (context) => {
+
+
+export const getStaticPaths = async () => {
+
+  return {
+      paths: [], //indicates that no page needs be created at build time
+      fallback: 'blocking' //indicates the type of fallback
+  }
+}
+
+export const getStaticProps = async (context) => {
   const tagUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?filters[tags][slug][$eq]=${context.params.slug}&pagination[1]&pagination[pageSize]=12&populate=Cover,Chapters,tags`;
   const tagResponse = await fetcher(tagUrl);
   console.log({ tagResponse });

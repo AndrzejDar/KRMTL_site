@@ -60,7 +60,7 @@ const tag = ({ tags, initNovels, initPage, pageCount }) => {
   );
 };
 
-export const getServerSideProps = async ({ query: { page = 1 } }) => {
+export const getStaticProps = async () => {
   //get list of all tags
   const tagsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/tags`;
   const tagsResponse = await fetcher(tagsUrl);
@@ -72,7 +72,7 @@ export const getServerSideProps = async ({ query: { page = 1 } }) => {
     props: {
       tags: tagsResponse.data,
       initNovels: novelsResponse.data,
-      initPage: page,
+      initPage: 1,
       pageCount: novelsResponse.meta.pagination.pageCount,
     },
   };

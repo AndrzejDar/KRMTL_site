@@ -27,7 +27,7 @@ const Pagination = ({ current, total, setPagination, paginate }) => {
         
           {new Array(total).fill(0).map((a,id)=>
             (id+1>=current - 2 && id+1 <= current + 2)?
-              (<div className={`${paginationStyles.button} ${current == id+1 ? paginationStyles.active : ""}`} 
+              (<div key={id} className={`${paginationStyles.button} ${current == id+1 ? paginationStyles.active : ""}`} 
               onClick={()=>{paginate(id+1)}}
               >{id+1}</div>):('')
           )}

@@ -10,8 +10,8 @@ import Pagination from "/components/Pagination";
 const novel = ({ initNovels, tags, initPage, pageCount }) => {
   // const router = useRouter();
 
-const [novels,setNovels]=useState(initNovels);
-const [page,setPage]=useState(initPage);
+  const [novels, setNovels] = useState(initNovels);
+  const [page, setPage] = useState(initPage);
 
   const paginate = async (page) => {
     // router.push(`/novel?&pagination[page]=${page}&pagination[pageSize]=12`);
@@ -34,7 +34,7 @@ const [page,setPage]=useState(initPage);
             </Link>
 
             {tags.map((tag, id) => (
-              <div className={novelStyles.tagButton}>
+              <div className={novelStyles.tagButton} key={id}>
                 <Link href={`/tag/${tag.attributes.slug}`}>
                   {tag.attributes.tag_name}
                 </Link>
@@ -48,12 +48,8 @@ const [page,setPage]=useState(initPage);
             <NovelCompact key={id} novel={novel} />
             // <Novel key={id} novel={novel} novelStyles={novelStyles} />
           ))}
-          <Pagination
-            current={page}
-            total={pageCount}
-            paginate={paginate}
-          />
         </div>
+        <Pagination current={page} total={pageCount} paginate={paginate} />
       </div>
       <footer className="app__footer">
         <Footer />
@@ -62,7 +58,7 @@ const [page,setPage]=useState(initPage);
   );
 };
 
-export const getServerSideProps = async ({ query: { page = 1 } }) => {
+export const getStaticProps = async () => {
   //get list of all tags
   const tagsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/tags`;
   const tagsResponse = await fetcher(tagsUrl);
@@ -74,7 +70,7 @@ export const getServerSideProps = async ({ query: { page = 1 } }) => {
     props: {
       tags: tagsResponse.data,
       initNovels: novelsResponse.data,
-      initPage: page,
+      initPage: 1,
       pageCount: novelsResponse.meta.pagination.pageCount,
     },
   };

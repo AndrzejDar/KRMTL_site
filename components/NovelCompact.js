@@ -5,15 +5,14 @@ import Link from "next/link";
 import novelCompactStyles from "/styles/NovelCompact.module.scss";
 
 const NovelCompact = ({
-  key,
+  id,
   novel: {
-    attributes: { Cover, Title, slug },
-    id,
+    attributes: { Cover, Title, slug },    
   },
 }) => {
   return (
-    <Link href={`/novel/${slug}`}>
-      <div className={novelCompactStyles.tile} key={key}>
+    <Link href={`/novel/${slug}`} key={id}>
+      <div className={novelCompactStyles.tile} >
         <div className={novelCompactStyles.cover}>
           <img
             src={
