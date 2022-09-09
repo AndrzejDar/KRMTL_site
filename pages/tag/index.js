@@ -31,7 +31,7 @@ const Tag = ({ tags, initNovels, initPage, pageCount }) => {
             </Link>
 
             {tags.map((tag, id) => (
-              <div className={novelStyles.tagButton}>
+              <div key={id} className={novelStyles.tagButton}>
                 <Link href={`/tag/${tag.attributes.slug}`}>
                   {tag.attributes.tag_name}
                 </Link>
