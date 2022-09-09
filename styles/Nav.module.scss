@@ -127,22 +127,24 @@
   align-items: center;
   justify-content: flex-end;
 
-  & > * {
-    margin: 10px;
-    cursor: pointer;
-  }
+  .search {
+    & > * {
+      margin: 10px;
+      cursor: pointer;
+    }
 
-  & > svg {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    padding: 14px;
-    margin: 10px;
-    size: 10px;
-    overflow: visible;
+    & > svg {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      padding: 14px;
+      margin: 10px;
+      size: 10px;
+      overflow: visible;
 
-    &:hover {
-      background-color: hsla(0, 0%, 100%, 0.12);
+      &:hover {
+        background-color: hsla(0, 0%, 100%, 0.12);
+      }
     }
   }
 }

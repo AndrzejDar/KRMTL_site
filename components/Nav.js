@@ -22,15 +22,26 @@ const Nav = () => {
     bookmarks: [1, 2, 3],
   };
 
-  const router= useRouter();
+  const router = useRouter();
 
   return (
     <div className="app__header">
       <div className="app__header-container">
         <div className={navStyles.header_left}>
-          <NavMenu onClick={() => setToggleNav(!toggleNav)} onBlur={() => setToggleNav(false)} user={user} open={toggleNav} links={links} />
+          <NavMenu
+            onClick={() => setToggleNav(!toggleNav)}
+            onBlur={() => setToggleNav(false)}
+            user={user}
+            open={toggleNav}
+            links={links}
+          />
 
-          <div className={navStyles.logo} onClick={()=>{router.push(`/`)}}>
+          <div
+            className={navStyles.logo}
+            onClick={() => {
+              router.push(`/`);
+            }}
+          >
             <img src={header.logo.img} alt={header.logo.text} />
             {/* <span dangerouslySetInnerHTML={{ __html: logo_text["text"] }}></span> */}
           </div>
@@ -45,13 +56,13 @@ const Nav = () => {
           </div>
         </div>
         <div className={navStyles.header_right}>
-<Link href='/search'>
-<>
-          <FaSearch />
-</>
-</Link>
+          <Link href="/search">
+            <div className={navStyles.search}>
+              <FaSearch />
+            </div>
+          </Link>
 
-{/* bookmarks and user panel for further development */}
+          {/* bookmarks and user panel for further development */}
           {/* <FaRegBookmark />
 
           <UserButton onClick={()=>setToggleUserMenu(!toggleUserMenu)} onBlur={()=>setToggleUserMenu(false)}
