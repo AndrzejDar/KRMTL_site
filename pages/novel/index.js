@@ -7,7 +7,7 @@ import Footer from "../../components/Footer";
 import Link from "next/link";
 import Pagination from "/components/Pagination";
 
-const novel = ({ initNovels, tags, initPage, pageCount }) => {
+const Novel = ({ initNovels, tags, initPage, pageCount }) => {
   // const router = useRouter();
 
   const [novels, setNovels] = useState(initNovels);
@@ -76,4 +76,4 @@ export const getStaticProps = async () => {
   };
 };
 
-export default novel;
+export default Novel;

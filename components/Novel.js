@@ -40,7 +40,7 @@ const Novel = ({
         <div className={novelStyles.header}>
           <h1> {Title}</h1>
           <div className={novelStyles.tags}>
-            {console.log(tags)}
+            {/* {console.log(tags)} */}
             {tags.data.map((tag, id) => (
               <Link key={id} href={`/tag/${tag.attributes.slug}`}>
                 <div className={novelStyles.tag}>

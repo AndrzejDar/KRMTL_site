@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import searchStyles from "/styles/Search.module.scss";
 import Pagination from "/components/Pagination";
 
-const search = ({ releases }) => {
+const Search = ({ releases }) => {
   const [query, setQuery] = useState("");
   const [searchRes, setSearchRes] = useState([]);
   const [page, setPage] = useState(1);
@@ -25,7 +25,6 @@ const search = ({ releases }) => {
 
   const paginate = async (page) => {
     setPage(page);
-    // fetchData();
     console.log(page)
   };
 
@@ -104,4 +103,4 @@ export const getStaticProps = async () => {
   };
 };
 
-export default search;
+export default Search;
