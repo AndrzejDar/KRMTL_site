@@ -6,14 +6,14 @@ import Footer from "/components/Footer";
 import Pagination from "/components/Pagination";
 
 
-const Tag = ({ initNovels, initPage, pageCount }) => {
+const Tag = ({ initNovels, initPage, pageCount, slug }) => {
 
 
   const [Novels,setNovels]=useState(initNovels);
   const [page,setPage]=useState(initPage);
 
   const paginate = async (page) => {
-    const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?populate=Cover,Chapters,tags&pagination[page]=${page}&pagination[pageSize]=12`;
+    const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?filters[tags][slug][$eq]=${slug}&populate=Cover,Chapters,tags&pagination[page]=${page}&pagination[pageSize]=12`;
     const novelsResponse = await fetcher(novelsUrl);
     setNovels(novelsResponse.data);
     setPage(page);
@@ -24,7 +24,7 @@ const Tag = ({ initNovels, initPage, pageCount }) => {
     <div className="app__content">
       <div className="app__content-container">
         {Novels.map((novel, id) => {
-            console.log(novel);
+            // console.log(novel);
 
           return (<Novel key={id} novel={novel} novelStyles={novelStyles} />)
 })}
@@ -67,6 +67,7 @@ export const getStaticProps = async (context) => {
       initNovels: tagResponse.data,
       initPage: 1,
       pageCount: tagResponse.meta.pagination.pageCount,
+      slug: context.params.slug
     },
   };
 };

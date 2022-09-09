@@ -23,7 +23,7 @@ const Novel = ({
     <div className={novelStyles.novel} key={id}>
       <div className={novelStyles.left}>
         <div className={novelStyles.cover}>
-          {console.log(Cover.data)}
+          {/* {console.log(Cover.data)} */}
           <img
             src={
               Cover.data
@@ -44,7 +44,7 @@ const Novel = ({
             {tags.data.map((tag, id) => (
               <Link key={id} href={`/tag/${tag.attributes.slug}`}>
                 <div className={novelStyles.tag}>
-                  {console.log(tag.attributes.slug)}
+                  {/* {console.log(tag.attributes.slug)} */}
                   <FaTag />
                   <span>{tag.attributes.tag_name}</span>
                 </div>

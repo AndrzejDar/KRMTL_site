@@ -95,7 +95,7 @@ const Search = ({ releases }) => {
 };
 
 export const getStaticProps = async () => {
-  const releasesUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?sort=updatedAt:DESC&pagination[pageSize]=12&populate=Cover,Chapters`;
+  const releasesUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?sort=updatedAt:DESC&pagination[pageSize]=12&populate=Cover`;
   const releasesResponse = await fetcher(releasesUrl);
 
   return {

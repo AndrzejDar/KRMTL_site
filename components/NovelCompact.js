@@ -17,7 +17,7 @@ const NovelCompact = ({
           <img
             src={
               Cover.data
-                ? `${process.env.NEXT_PUBLIC_MEDIA_URL}${Cover.data.attributes.formats.medium.url}`
+                ? `${process.env.NEXT_PUBLIC_MEDIA_URL}${Cover.data.attributes.formats.small.url}`
                 : "/img/missing.png"
             }
           />
