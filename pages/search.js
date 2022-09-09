@@ -64,7 +64,9 @@ const Search = ({ releases }) => {
                   <div className="smallGrid">
                     {searchRes.map((novel, id) => {                      
                       return (
+                        <div key={id}>
                         <NovelCompact id={id} novel={novel} />
+                        </div>
                       );
                     })}
                   </div>

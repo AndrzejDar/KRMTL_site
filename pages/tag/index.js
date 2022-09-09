@@ -7,7 +7,7 @@ import Footer from "/components/Footer";
 import Link from "next/link";
 import Pagination from "/components/Pagination";
 
-const tag = ({ tags, initNovels, initPage, pageCount }) => {
+const Tag = ({ tags, initNovels, initPage, pageCount }) => {
   const [novels,setNovels]=useState(initNovels);
   const [page,setPage]=useState(initPage);
 
@@ -78,4 +78,4 @@ export const getStaticProps = async () => {
   };
 };
 
-export default tag;
+export default Tag;
