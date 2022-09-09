@@ -84,7 +84,7 @@ const Search = ({ releases }) => {
 
           <div className="divider"></div>
           <span>OR browse our latest releases:</span>
-          <Releases content={releases.data} />
+          <Releases content={releases} />
         </div>
         <footer className="app__footer">
           <Footer />
@@ -95,12 +95,18 @@ const Search = ({ releases }) => {
 };
 
 export const getStaticProps = async () => {
-  const releasesUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?sort=updatedAt:DESC&pagination[pageSize]=12&populate=Cover`;
+  const releasesUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?sort=updatedAt:DESC&pagination[pageSize]=12&populate=Cover,Chapters`;
   const releasesResponse = await fetcher(releasesUrl);
+
+  releasesResponse.data.forEach(novel => {
+    novel.attributes.Chapters.data.forEach(chapter=>{chapter.attributes.Chapter_Content='';
+
+    });
+  });
 
   return {
     props: {
-      releases: releasesResponse,
+      releases: releasesResponse.data,
     },
   };
 };

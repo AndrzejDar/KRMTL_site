@@ -5,7 +5,7 @@ import { fetcher } from "../lib/api";
 import Footer from "../components/Footer";
 
 export default function Home({ novels }) {
-  console.log(novels);
+  // console.log(novels);
   return (
     <>
       <Head>
