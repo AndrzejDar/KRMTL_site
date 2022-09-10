@@ -35,9 +35,9 @@ export const getStaticProps = async () => {
   const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?sort=updatedAt:DESC&pagination[pageSize]=12&populate=Cover,Chapters`;
   const novelResponse = await fetcher(novelsUrl);
   // novel.attributes.Chapters.data.sort((a,b)=>b.attributes.Chapter_Number-a.attributes.Chapter_Number).slice(0,4)
+  //clearing chapter content from data
   novelResponse.data.forEach(novel => {
     novel.attributes.Chapters.data.forEach(chapter=>{chapter.attributes.Chapter_Content='';
-
     })
     // novel.attributes.Chapters.data.attributes.Chapter_content = '';
     

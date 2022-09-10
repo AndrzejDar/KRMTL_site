@@ -60,7 +60,13 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const tagUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?filters[tags][slug][$eq]=${context.params.slug}&pagination[1]&pagination[pageSize]=12&populate=Cover,Chapters,tags`;
   const tagResponse = await fetcher(tagUrl);
-  console.log({ tagResponse });
+  // console.log({ tagResponse });
+
+    //clearing chapter content from data
+    tagResponse.data.forEach(novel => {
+      novel.attributes.Chapters.data.forEach(chapter=>{chapter.attributes.Chapter_Content='';
+      });
+    });
 
   return {
     props: {

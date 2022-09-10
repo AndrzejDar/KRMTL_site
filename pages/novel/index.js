@@ -66,6 +66,8 @@ export const getStaticProps = async () => {
   const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?populate=Cover&sort=updatedAt:DESC&pagination[page]=1&pagination[pageSize]=12`;
   const novelsResponse = await fetcher(novelsUrl);
 
+
+
   return {
     props: {
       tags: tagsResponse.data,

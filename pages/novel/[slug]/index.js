@@ -31,6 +31,14 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const novelUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?filters[slug][$eq]=${context.params.slug}&populate=*`;
   const novelResponse = await fetcher(novelUrl);
+
+  //clearing chapter content from data
+  novelResponse.data.forEach(novel => {
+    novel.attributes.Chapters.data.forEach(chapter=>{chapter.attributes.Chapter_Content='';
+    });
+  });
+
+
   return {
     props: {
       novel: novelResponse.data[0],
