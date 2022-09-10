@@ -11,18 +11,18 @@ const Tag = ({ initNovels, initPage, pageCount, slug }) => {
   const [page, setPage] = useState(initPage);
   // 
   const paginate = async (page) => {
-    // const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?filters[tags][slug][$eq]=${slug}&populate=Cover,tags&pagination[page]=${page}&pagination[pageSize]=12`;
-    // const novelsResponse = await fetcher(novelsUrl);
+    const novelsUrl = `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels?filters[tags][slug][$eq]=${slug}&populate=Cover,tags&pagination[page]=${page}&pagination[pageSize]=12`;
+    const novelsResponse = await fetcher(novelsUrl);
 
     
     
-    const option = {
-      populate: '*'
-    };
+    // const option = {
+    //   populate: '*'
+    // };
 
-    const novelsResponse = await (await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels`,option)).json();
+    // const novelsResponse = await (await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/novels`,option)).json();
 
-    console.log(novelsResponse);
+    // console.log(novelsResponse);
     setNovels(novelsResponse.data);
     setPage(page);
   };
